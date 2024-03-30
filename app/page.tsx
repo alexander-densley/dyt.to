@@ -64,6 +64,7 @@ export default function Home() {
   const handleLongLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLongLink(e.target.value)
   }
+  // TODO: add lowercase check
   const handleShortLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShortLink(e.target.value)
   }
@@ -79,7 +80,7 @@ export default function Home() {
 
       <Card className='w-[350px]'>
         <CardHeader>
-          <CardTitle>Create a short with with dyt.to</CardTitle>
+          <CardTitle>Create a short link with dyt.to</CardTitle>
           <CardDescription>
             Create a short link with dyt.to and share it with your friends.
           </CardDescription>
