@@ -1,3 +1,6 @@
+export const fetchCache = 'auto'
+export const revalidate = 0
+
 import { createClient } from '@supabase/supabase-js'
 export async function GET(request: Request) {
   const values =
