@@ -69,7 +69,7 @@ export default function Home() {
   }
 
   return (
-    <div className='flex min-h-screen flex-col items-center space-y-12'>
+    <div className='flex min-h-screen flex-col items-center space-y-6 md:space-y-12'>
       <h2 className='mt-12 scroll-m-20 text-center text-4xl font-extrabold tracking-tight md:mt-24 lg:text-5xl'>
         Create unique short links with
       </h2>
