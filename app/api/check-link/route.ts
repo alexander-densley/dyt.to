@@ -1,4 +1,4 @@
-export const fetchCache = 'auto'
+export const fetchCache = 'force-no-store'
 export const revalidate = 0
 
 import { createClient } from '@supabase/supabase-js'
