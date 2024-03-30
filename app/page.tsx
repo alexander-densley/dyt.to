@@ -27,8 +27,23 @@ export default function Home() {
 			return false
 		}
 	}
-
+	async function checkLink(link: string) {
+		const res = await fetch('/api/check-link?link=' + link, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+		const data = await res.json()
+		setExists(data.exists)
+	}
 	async function addLink() {
+		console.log(longLink, shortLink)
+		console.log(exists)
+		if (exists) {
+			return
+		}
+
 		const res = await fetch('/api/create-link', {
 			method: 'POST',
 			headers: {
@@ -41,17 +56,6 @@ export default function Home() {
 		})
 		const data = await res.json()
 		setAdded(data.added)
-	}
-
-	async function checkLink(link: string) {
-		const res = await fetch('/api/check-link?link=' + link, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		const data = await res.json()
-		setExists(data.exists)
 	}
 
 	const handleLongLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
