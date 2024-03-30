@@ -13,7 +13,7 @@ interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export async function copyToClipboardWithMeta(value: string) {
-	navigator.clipboard.writeText(value)
+	navigator.clipboard.writeText(`https://dyt.to/${value}`)
 }
 
 export function CopyButton({ value, className, src }: CopyButtonProps) {
