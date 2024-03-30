@@ -23,10 +23,7 @@ export default function Home() {
 
   async function generateLink() {
     const res = await fetch('/api/generate-link', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      cache: 'no-store',
     })
     const { randomString } = await res.json()
     setShortLink(randomString)
