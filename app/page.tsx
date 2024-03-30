@@ -17,6 +17,7 @@ export default function Home() {
 	const [longLink, setLongLink] = useState('')
 	const [shortLink, setShortLink] = useState('')
 	const [exists, setExists] = useState(false)
+	const [added, setAdded] = useState(false)
 
 	function isValidUrl(url: string) {
 		try {
@@ -25,6 +26,21 @@ export default function Home() {
 		} catch (err) {
 			return false
 		}
+	}
+
+	async function addLink() {
+		const res = await fetch('/api/create-link', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				long_link: longLink,
+				short_link: shortLink,
+			}),
+		})
+		const data = await res.json()
+		setAdded(data.added)
 	}
 
 	async function checkLink(link: string) {
@@ -96,7 +112,7 @@ export default function Home() {
 				</CardContent>
 				<CardFooter className='flex justify-between'>
 					<Button variant='outline'>Cancel</Button>
-					<Button>Create link</Button>
+					<Button onClick={addLink}>Create link</Button>
 				</CardFooter>
 			</Card>
 		</div>
