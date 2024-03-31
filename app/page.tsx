@@ -76,8 +76,8 @@ export default function Home() {
   }
 
   return (
-    <div className='flex min-h-screen flex-col items-center space-y-6 md:space-y-12'>
-      <h2 className='mt-12 scroll-m-20 text-center text-4xl font-extrabold tracking-tight md:mt-24 lg:text-5xl'>
+    <div className='flex min-h-screen flex-col items-center space-y-6 sm:space-y-12'>
+      <h2 className='mt-12 scroll-m-20 text-center text-4xl font-extrabold tracking-tight sm:mt-24 lg:text-5xl'>
         Create unique short links with
       </h2>
       <h1 className='scroll-m-20 text-5xl font-extrabold italic tracking-tight underline lg:text-6xl'>
@@ -96,7 +96,7 @@ export default function Home() {
             <div className='flex flex-col space-y-1.5'>
               <Label htmlFor='link'>Your link</Label>
               <div className='flex items-center gap-1'>
-                <p className='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base text-muted-foreground ring-offset-background file:border-0 file:bg-transparent file:text-base file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'>
+                <p className='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base text-muted-foreground ring-offset-background file:border-0 file:bg-transparent file:text-base file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm'>
                   https://
                 </p>
                 <Input
@@ -104,18 +104,18 @@ export default function Home() {
                   placeholder='example.com'
                   value={longLink}
                   onChange={handleLongLinkChange}
-                  className='text-base md:text-sm'
+                  className='text-base sm:text-sm'
                 />
               </div>
 
               {!isValidUrl('https://' + longLink) && longLink.length > 0 && (
-                <p className='text-sm text-muted-foreground md:text-sm'>
+                <p className='text-sm text-muted-foreground sm:text-sm'>
                   Please enter a valid URL.
                 </p>
               )}
               <Label htmlFor='short_link'>Shortened link</Label>
               <div className='flex items-center gap-1'>
-                <p className='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base  text-muted-foreground ring-offset-background file:border-0 file:bg-transparent file:text-base file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'>
+                <p className='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base  text-muted-foreground ring-offset-background file:border-0 file:bg-transparent file:text-base file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm'>
                   dyt.to/
                 </p>
                 <Input
@@ -123,7 +123,7 @@ export default function Home() {
                   placeholder='short link'
                   value={shortLink}
                   onChange={handleShortLinkChange}
-                  className='text-base md:text-sm'
+                  className='text-base sm:text-sm'
                 />
                 <CopyButton value={shortLink} />
               </div>
