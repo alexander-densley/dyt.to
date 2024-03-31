@@ -15,6 +15,7 @@ import { CopyButton } from '@/components/copy-button'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import { isValidUrl, checkLink } from '@/lib/utils'
+import { set } from 'react-hook-form'
 
 export default function Home() {
   const [longLink, setLongLink] = useState('')
@@ -30,17 +31,18 @@ export default function Home() {
   }
 
   async function addLink() {
+    setLoading(true)
     const exists = await checkLink(shortLink)
     if (exists) {
       toast.error('This short link already exists!')
+      setLoading(false)
       return
     }
     if (longLink.length === 0 || shortLink.length === 0) {
       toast.error('Links cannot be empty!')
+      setLoading(false)
       return
     }
-
-    setLoading(true)
 
     const res = await fetch('/api/create-link', {
       method: 'POST',

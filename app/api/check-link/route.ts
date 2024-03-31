@@ -1,6 +1,8 @@
 export const fetchCache = 'force-no-store'
 export const revalidate = 0
 
+export const runtime = 'edge'
+
 import { createClient } from '@supabase/supabase-js'
 
 export async function GET(request: Request) {
