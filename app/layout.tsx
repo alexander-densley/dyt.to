@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import { Inter as FontSans } from 'next/font/google'
 import '@/styles/globals.css'
 import { Toaster } from '@/components/ui/sonner'
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
         <main>{children}</main>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   )
