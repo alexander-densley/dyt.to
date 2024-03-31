@@ -10,7 +10,7 @@ const supabase = createClient(
 export async function middleware(request: NextRequest) {
   const lowerCaseLink = request.nextUrl.pathname.slice(1).toLowerCase()
   console.log(lowerCaseLink)
-  if (lowerCaseLink.length > 1) {
+  if (lowerCaseLink.length > 0) {
     const { data, error } = await supabase
       .from('links')
       .select('long_link')
