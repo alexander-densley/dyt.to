@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     const { data, error } = await supabase
       .from('links')
       .select('*')
-      .eq('short_link', randomString)
+      .eq('short_link', randomString.toLowerCase())
 
     if (error) {
       return new Response(JSON.stringify(error), {

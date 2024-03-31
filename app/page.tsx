@@ -15,7 +15,6 @@ import { CopyButton } from '@/components/copy-button'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import { isValidUrl, checkLink } from '@/lib/utils'
-import { set } from 'react-hook-form'
 
 export default function Home() {
   const [longLink, setLongLink] = useState('')
@@ -64,7 +63,13 @@ export default function Home() {
   }
 
   const handleLongLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLongLink(e.target.value)
+    let inputValue = e.target.value
+
+    if (inputValue.startsWith('https://')) {
+      inputValue = inputValue.slice(8)
+    }
+
+    setLongLink(inputValue)
   }
   // TODO: add lowercase check
   const handleShortLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +81,7 @@ export default function Home() {
       <h2 className='mt-12 scroll-m-20 text-center text-4xl font-extrabold tracking-tight md:mt-24 lg:text-5xl'>
         Create unique short links with
       </h2>
-      <h1 className='scroll-m-20 text-5xl font-extrabold italic tracking-tight lg:text-6xl'>
+      <h1 className='scroll-m-20 text-5xl font-extrabold italic tracking-tight underline lg:text-6xl'>
         dyt.to
       </h1>
 
@@ -84,20 +89,26 @@ export default function Home() {
         <CardHeader>
           <CardTitle>Create a short link with dyt.to</CardTitle>
           <CardDescription>
-            Create a short link with dyt.to and share it with your friends.
+            Just paste your long link and get a shortened link instantly!
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className='grid w-full items-center gap-4'>
             <div className='flex flex-col space-y-1.5'>
               <Label htmlFor='link'>Your link</Label>
-              <Input
-                id='link'
-                placeholder='https://example.com'
-                value={longLink}
-                onChange={handleLongLinkChange}
-              />
-              {!isValidUrl(longLink) && longLink.length > 0 && (
+              <div className='flex items-center gap-1'>
+                <p className='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm text-muted-foreground ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'>
+                  https://
+                </p>
+                <Input
+                  id='link'
+                  placeholder='example.com'
+                  value={longLink}
+                  onChange={handleLongLinkChange}
+                />
+              </div>
+
+              {!isValidUrl('https://' + longLink) && longLink.length > 0 && (
                 <p className='text-sm text-muted-foreground'>
                   Please enter a valid URL.
                 </p>

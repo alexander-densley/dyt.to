@@ -7,7 +7,8 @@ import { createClient } from '@supabase/supabase-js'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const link = searchParams.get('link')
+  const link = searchParams.get('link') || ''
+  const lowerCaseLink = link.toLowerCase()
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL as string,
     process.env.SUPABASE_SERVICE_ROLE_KEY as string
@@ -15,7 +16,7 @@ export async function GET(request: Request) {
   const { data, error } = await supabase
     .from('links')
     .select('*')
-    .eq('short_link', link)
+    .eq('short_link', lowerCaseLink)
 
   if (error) {
     return new Response(JSON.stringify(error), {

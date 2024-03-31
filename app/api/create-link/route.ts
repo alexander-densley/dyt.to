@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 export async function POST(request: Request) {
   const body = await request.json()
   const { long_link, short_link } = body
+  const lowerCaseShortLink = short_link.toLowerCase()
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL as string,
     process.env.SUPABASE_SERVICE_ROLE_KEY as string
@@ -13,7 +14,7 @@ export async function POST(request: Request) {
     .insert([
       {
         long_link,
-        short_link,
+        lowerCaseShortLink,
       },
     ])
     .select('*')
