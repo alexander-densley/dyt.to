@@ -9,6 +9,9 @@ const supabase = createClient(
 
 export async function middleware(request: NextRequest) {
   const lowerCaseLink = request.nextUrl.pathname.slice(1).toLowerCase()
+  if (lowerCaseLink.length === 0) {
+    return NextResponse.next()
+  }
   const { data, error } = await supabase
     .from('links')
     .select('long_link')
@@ -19,6 +22,7 @@ export async function middleware(request: NextRequest) {
       status: 500,
     })
   }
+  console.log(data)
   if (data?.length) {
     return NextResponse.redirect(new URL(data[0].long_link))
   } else {
