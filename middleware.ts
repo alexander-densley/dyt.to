@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   if (lowerCaseLink.length > 0) {
     const { data, error } = await supabase
       .from('links')
-      .select('long_link')
+      .select('long_link, clicks')
       .eq('short_link', lowerCaseLink)
 
     if (error) {
@@ -22,6 +22,10 @@ export async function middleware(request: NextRequest) {
       })
     }
     if (data?.length && data[0].long_link) {
+      await supabase
+        .from('links')
+        .update({ clicks: data[0].clicks + 1 })
+        .eq('short_link', lowerCaseLink)
       return NextResponse.redirect(new URL(data[0].long_link))
     } else {
       return NextResponse.next()
