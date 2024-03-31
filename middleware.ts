@@ -22,9 +22,9 @@ export async function middleware(request: NextRequest) {
       status: 500,
     })
   }
-  if (data?.length) {
+  if (data?.length && data[0].long_link) {
     return NextResponse.redirect(new URL(data[0].long_link))
   } else {
-    return NextResponse.redirect(new URL('https://dyt.to'))
+    return NextResponse.next()
   }
 }

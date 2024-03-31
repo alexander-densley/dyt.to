@@ -71,7 +71,6 @@ export default function Home() {
 
     setLongLink(inputValue)
   }
-  // TODO: add lowercase check
   const handleShortLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShortLink(e.target.value)
   }

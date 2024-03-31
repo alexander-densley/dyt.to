@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     .insert([
       {
         long_link,
-        lowerCaseShortLink,
+        short_link: lowerCaseShortLink,
       },
     ])
     .select('*')
