@@ -27,4 +27,5 @@ export async function middleware(request: NextRequest) {
   } else {
     // return NextResponse.redirect(new URL('https://dyt.to'))
   }
+  return NextResponse.next()
 }
