@@ -49,7 +49,7 @@ export default function Home() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        long_link: longLink,
+        long_link: 'https://' + longLink,
         short_link: shortLink,
       }),
     })

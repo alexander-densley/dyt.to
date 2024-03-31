@@ -9,22 +9,23 @@ const supabase = createClient(
 
 export async function middleware(request: NextRequest) {
   const lowerCaseLink = request.nextUrl.pathname.slice(1).toLowerCase()
-  if (lowerCaseLink.length === 0) {
-    return NextResponse.next()
-  }
-  const { data, error } = await supabase
-    .from('links')
-    .select('long_link')
-    .eq('short_link', lowerCaseLink)
+  console.log(lowerCaseLink)
+  if (lowerCaseLink.length > 1) {
+    const { data, error } = await supabase
+      .from('links')
+      .select('long_link')
+      .eq('short_link', lowerCaseLink)
 
-  if (error) {
-    return new NextResponse(JSON.stringify(error), {
-      status: 500,
-    })
+    if (error) {
+      return new NextResponse(JSON.stringify(error), {
+        status: 500,
+      })
+    }
+    if (data?.length && data[0].long_link) {
+      return NextResponse.redirect(new URL(data[0].long_link))
+    } else {
+      return NextResponse.next()
+    }
   }
-  if (data?.length && data[0].long_link) {
-    return NextResponse.redirect(new URL(data[0].long_link))
-  } else {
-    return NextResponse.next()
-  }
+  return NextResponse.next()
 }
