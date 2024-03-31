@@ -104,6 +104,7 @@ export default function Home() {
                   placeholder='example.com'
                   value={longLink}
                   onChange={handleLongLinkChange}
+                  className='text-base'
                 />
               </div>
 
@@ -122,6 +123,7 @@ export default function Home() {
                   placeholder='short link'
                   value={shortLink}
                   onChange={handleShortLinkChange}
+                  className='text-base'
                 />
                 <CopyButton value={shortLink} />
               </div>
