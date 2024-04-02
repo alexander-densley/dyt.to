@@ -1,7 +1,9 @@
 export const runtime = 'edge'
 import { createClient } from '@supabase/supabase-js'
+import { auth } from '@clerk/nextjs'
 
 export async function POST(request: Request) {
+  const { userId } = auth()
   const body = await request.json()
   const { long_link, short_link } = body
   const lowerCaseShortLink = short_link.toLowerCase()
@@ -15,6 +17,7 @@ export async function POST(request: Request) {
       {
         long_link,
         short_link: lowerCaseShortLink,
+        user_id: userId,
       },
     ])
     .select('*')

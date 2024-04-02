@@ -15,6 +15,8 @@ import { CopyButton } from '@/components/copy-button'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import { isValidUrl, checkLink } from '@/lib/utils'
+import { SignedIn, SignIn, SignOutButton, SignedOut } from '@clerk/nextjs'
+import NavBar from '@/components/navbar'
 
 export default function Home() {
   const [longLink, setLongLink] = useState('')
@@ -76,8 +78,8 @@ export default function Home() {
   }
 
   return (
-    <div className='flex min-h-screen flex-col items-center space-y-6 sm:space-y-12'>
-      <h2 className='mt-12 scroll-m-20 text-center text-4xl font-extrabold tracking-tight sm:mt-24 lg:text-5xl'>
+    <div className='flex flex-col items-center space-y-6 sm:space-y-12'>
+      <h2 className='mt-8 scroll-m-20 text-center text-4xl font-extrabold tracking-tight sm:mt-16 lg:text-5xl'>
         Create unique short links with
       </h2>
       <h1 className='scroll-m-20 text-5xl font-extrabold italic tracking-tight underline lg:text-6xl'>
@@ -86,9 +88,11 @@ export default function Home() {
 
       <Card className='w-[350px]'>
         <CardHeader>
-          <CardTitle>Create a short link with dyt.to</CardTitle>
+          <CardTitle>Create a free short link with dyt.to</CardTitle>
           <CardDescription>
-            Just paste your long link and get a shortened link instantly!
+            Just paste your destination link and get a shortened link instantly!
+            Create a free account to save all your links and see how many clicks
+            each one gets!
           </CardDescription>
         </CardHeader>
         <CardContent>
