@@ -38,7 +38,7 @@ export default function NavBar() {
       </NavigationMenu> */}
       <div className='ml-auto flex items-center gap-2'>
         <Link
-          href='/links'
+          href='/account'
           className={cn(buttonVariants({ variant: 'default' }), 'h-8 p-2.5')}
         >
           My links
